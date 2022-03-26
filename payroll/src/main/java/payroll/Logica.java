@@ -100,55 +100,25 @@ public class Logica {
         return intervalos;
     }
 
-    public ArrayList<Intervalo> un_rango_muchos_intervalos(Intervalo rangos, ArrayList<Intervalo> intervalos) {
+    public ArrayList<Intervalo> un_rango_muchos_intervalos(Intervalo rango, ArrayList<Intervalo> intervalos) {
 
-        ArrayList<Intervalo> auxiliar = new ArrayList<>();
-
-        intervalos.add(new Intervalo(0, 100));
-        intervalos.add(new Intervalo(40, 60));
-        int i = rangos.infe;
-        int s = rangos.supe;
-        int a = 0;
-        int b = 0;
+        ArrayList<Intervalo> resultado = new ArrayList<>();
+        ArrayList<Intervalo> aux = new ArrayList<>();
 
         int index = 0;
         while (index < intervalos.size()) {
-            a = intervalos.get(index).getInfe();
-            b = intervalos.get(index).getSupe();
-
-            if (!(a < b) || !(i < s)) {
-                System.out.println("no es posible");
-            } else if ((a < i && i < b) && (a < s && s < b)) {
-                System.out.println("caso 1");
-                auxiliar.add(new Intervalo(a, i));
-                auxiliar.add(new Intervalo(s, b));
-            } else if (!(a < i && i < b) && (a < s && s < b)) {
-                System.out.println("caso 2");
-                auxiliar.add(new Intervalo(s, b));
-            } else if ((a < i && i < b) && !(a < s && s < b)) {
-                System.out.println("caso 3");
-                auxiliar.add(new Intervalo(a, i));
-            } else if (i <= a && b <= s) {
-                System.out.println("caso 4");
-            } else if (b <= i) {
-                System.out.println("caso 5");
-                auxiliar.add(new Intervalo(a, b));
-            } else if (s <= a) {
-                System.out.println("caso 6");
-                auxiliar.add(new Intervalo(a, b));
-            } else {
-                System.out.println("existe otro caso?");
-            }
+            aux = this.un_rango_un_intervalo(rango, intervalos.get(index));
+            resultado.addAll(aux);
             index = index + 1;
         }
 
-        int indexb = 0;
-        System.out.println(auxiliar.size());
-        while (indexb < auxiliar.size()) {
-            System.out.println(auxiliar.get(indexb).getInfe() + " " + auxiliar.get(indexb).getSupe());
-            indexb = indexb + 1;
-        }
-        return auxiliar;
+        //int indexb = 0;
+        //System.out.println(resultado.size());
+        //while (indexb < resultado.size()) {
+        //    System.out.println(resultado.get(indexb).getInfe() + " " + resultado.get(indexb).getSupe());
+        //    indexb = indexb + 1;
+        //}
+        return resultado;
     }
 
     ArrayList<Intervalo> muchos_rangos_muchos_intervalos(ArrayList<Intervalo> rangos, ArrayList<Intervalo> intervalos) {
