@@ -121,13 +121,15 @@ public class Logica {
         return resultado;
     }
 
-    ArrayList<Intervalo> muchos_rangos_muchos_intervalos(ArrayList<Intervalo> rangos, ArrayList<Intervalo> intervalos) {
-
+    public ArrayList<Intervalo> muchos_rangos_un_intervalo(ArrayList<Intervalo> rangos, Intervalo intervalo) {
+        // intervalo va de 0 a 365 dias ( 1 año). Lo convertiremos en ArrayList
+        ArrayList<Intervalo> intervalos = new ArrayList<>();
+        intervalos.add(intervalo);
         // llamar a mi_funcion
         for (int i = 0; i < rangos.size(); i++) {
-            un_rango_muchos_intervalos(rangos.get(i), intervalos);
+            intervalos = this.un_rango_muchos_intervalos(rangos.get(i), intervalos);
         }
-        return rangos;
+        return intervalos;
     }
 
     /*
