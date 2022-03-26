@@ -47,36 +47,44 @@ public class Logica {
     public void mi_funcion() {
 
         ArrayList<Intervalo> names = new ArrayList<>();
+        ArrayList<Intervalo> auxiliar = new ArrayList<>();
 
         names.add(new Intervalo(0, 100));
-        int a = names.get(0).getInfe();
-        int b = names.get(0).getSupe();
-        int i = -10;
-        int s = 200;
+        names.add(new Intervalo(40, 60));
+        int a = 0;
+        int b = 0;
+        int i = 20;
+        int s = 30;
 
-        
-        if (!(a < b) || !(i < s)) {
-            System.out.println("no es posible");
-        } else if ((a < i && i < b) && (a < s && s < b)) {
-            System.out.println("caso 1");
-            names.remove(0);
-            names.add(new Intervalo(a, i));
-            names.add(new Intervalo(s, b));
-        } else if (!(a < i && i < b) && (a < s && s < b)) {
-            System.out.println("caso 2");
-            names.add(new Intervalo(s, b));
-        } else if ((a < i && i < b) && !(a < s && s < b)) {
-            System.out.println("caso 3");
-            names.add(new Intervalo(a, i));
-        } else if (i <= a && b <= s) {
-            System.out.println("caso 4");
-            names.remove(0);
-        } else if (b <= i) {
-            System.out.println("caso 5");
-        } else if (s <= a) {
-            System.out.println("caso 6");
-        } else {
-            System.out.println("existe otro caso?");
+        int index = 0;
+        while (index < names.size()) {
+            a = names.get(index).getInfe();
+            b = names.get(index).getSupe();
+
+            if (!(a < b) || !(i < s)) {
+                System.out.println("no es posible");
+            } else if ((a < i && i < b) && (a < s && s < b)) {
+                System.out.println("caso 1");
+                auxiliar.add(new Intervalo(a, i));
+                auxiliar.add(new Intervalo(s, b));
+            } else if (!(a < i && i < b) && (a < s && s < b)) {
+                System.out.println("caso 2");
+                auxiliar.add(new Intervalo(s, b));
+            } else if ((a < i && i < b) && !(a < s && s < b)) {
+                System.out.println("caso 3");
+                auxiliar.add(new Intervalo(a, i));
+            } else if (i <= a && b <= s) {
+                System.out.println("caso 4");
+            } else if (b <= i) {
+                System.out.println("caso 5");
+                auxiliar.add(new Intervalo(a, b));
+            } else if (s <= a) {
+                System.out.println("caso 6");
+                auxiliar.add(new Intervalo(a, b));
+            } else {
+                System.out.println("existe otro caso?");
+            }
+            index = index + 1;
         }
 
         // Intervalo hola = new Intervalo(2, 10);
@@ -84,10 +92,11 @@ public class Logica {
         // Intervalo hola2 = new Intervalo(7, 20);
         // names.add(hola2);
         //
-        int index = 0;
-        while (index < names.size()) {
-            System.out.println(names.get(index).getInfe() + " " + names.get(index).getSupe());
-            index = index + 1;
+        int indexb = 0;
+        System.out.println(auxiliar.size());
+        while (indexb < auxiliar.size()) {
+            System.out.println(auxiliar.get(indexb).getInfe() +" "+auxiliar.get(indexb).getSupe());
+            indexb = indexb + 1;
         }
         //// string can first be stored in a variable
         // String name = "Betty Jennings";
