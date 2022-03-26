@@ -14,8 +14,14 @@ public class Logica {
     }
 
     /*
-     * entrada: String
+     * ***********************************************
+     * entrada: String / entero
      * salida: String
+     * ***********************************************
+     * 
+     * Metodos para tranformar XML a JSON para un mejor tratamiento.
+     * Iteran sobre objeto JSONObject para extraer informacion de la fecha.
+     * 
      */
     public String retorna_todo(String hi) {
         JSONObject json = XML.toJSONObject(hi);
@@ -23,10 +29,6 @@ public class Logica {
         return hola;
     }
 
-    /*
-     * entrada: String
-     * salida: String
-     */
     public String retorna_json(String xml) {
         JSONObject json = XML.toJSONObject(xml);
         JSONObject a = (JSONObject) json.get("response");
@@ -43,23 +45,76 @@ public class Logica {
         return hola;
 
     }
+    /*
+     * ***********************************************
+     * entrada: Intervalo / ArrayList<Intervalo>
+     * salida: ArrayList<Intervalo>
+     * ***********************************************
+     * 
+     * Revisar seccion "Casos" del README.md para entender estas funciones.
+     * Es la logica principal del proyecto.
+     * 
+     */
 
-    public void mi_funcion() {
+    public ArrayList<Intervalo> un_rango_un_intervalo(Intervalo rango, Intervalo intervalo) {
 
-        ArrayList<Intervalo> names = new ArrayList<>();
+        int i = rango.getInfe();
+        int s = rango.getSupe();
+        int a = intervalo.getInfe();
+        int b = intervalo.getSupe();
+
+        ArrayList<Intervalo> intervalos = new ArrayList<>();
+        // imposible llegar aqui
+        if (!(a < b) || !(i < s)) {
+            System.out.println("no es posible");
+        }
+        // caso 1
+        else if ((a < i && i < b) && (a < s && s < b)) {
+            intervalos.add(new Intervalo(a, i));
+            intervalos.add(new Intervalo(s, b));
+        }
+        // caso 2
+        else if (!(a < i && i < b) && (a < s && s < b)) {
+            intervalos.add(new Intervalo(s, b));
+        }
+        // caso 3
+        else if ((a < i && i < b) && !(a < s && s < b)) {
+            intervalos.add(new Intervalo(a, i));
+        }
+        // caso 4
+        else if (i <= a && b <= s) {
+        }
+        // caso 5
+        else if (b <= i) {
+            intervalos.add(new Intervalo(a, b));
+        }
+        // caso 6
+        else if (s <= a) {
+            intervalos.add(new Intervalo(a, b));
+        }
+        // imposible llegar aqui
+        else {
+            System.out.println("existe otro caso?");
+        }
+
+        return intervalos;
+    }
+
+    public ArrayList<Intervalo> un_rango_muchos_intervalos(Intervalo rangos, ArrayList<Intervalo> intervalos) {
+
         ArrayList<Intervalo> auxiliar = new ArrayList<>();
 
-        names.add(new Intervalo(0, 100));
-        names.add(new Intervalo(40, 60));
+        intervalos.add(new Intervalo(0, 100));
+        intervalos.add(new Intervalo(40, 60));
+        int i = rangos.infe;
+        int s = rangos.supe;
         int a = 0;
         int b = 0;
-        int i = 20;
-        int s = 30;
 
         int index = 0;
-        while (index < names.size()) {
-            a = names.get(index).getInfe();
-            b = names.get(index).getSupe();
+        while (index < intervalos.size()) {
+            a = intervalos.get(index).getInfe();
+            b = intervalos.get(index).getSupe();
 
             if (!(a < b) || !(i < s)) {
                 System.out.println("no es posible");
@@ -87,49 +142,60 @@ public class Logica {
             index = index + 1;
         }
 
-        // Intervalo hola = new Intervalo(2, 10);
-        // names.add(hola);
-        // Intervalo hola2 = new Intervalo(7, 20);
-        // names.add(hola2);
-        //
         int indexb = 0;
         System.out.println(auxiliar.size());
         while (indexb < auxiliar.size()) {
-            System.out.println(auxiliar.get(indexb).getInfe() +" "+auxiliar.get(indexb).getSupe());
+            System.out.println(auxiliar.get(indexb).getInfe() + " " + auxiliar.get(indexb).getSupe());
             indexb = indexb + 1;
         }
-        //// string can first be stored in a variable
-        // String name = "Betty Jennings";
-        //// then add it to the list
-        // names.add(name);
-        //
-        //// strings can also be directly added to the list:
-        // names.add("Betty Snyder");
-        // names.add("Frances Spence");
-        // names.add("Kay McNulty");
-        // names.add("Marlyn Wescoff");
-        // names.add("Ruth Lichterman");
-        //
-        //// several different repeat statements can be
-        //// used to go through the list elements
-        //
-        //// 1. while loop
-        // int index = 0;
-        // while (index < names.size()) {
-        // System.out.println(names.get(index));
-        // index = index + 1;
-        // }
-        //
-        //// 2. for loop with index
-        // for (int i = 0; i < names.size(); i++) {
-        // System.out.println(names.get(i));
-        // }
-        //
-        // System.out.println();
-        //// 3. for each loop (no index)
-        // for (String name: names) {
-        // System.out.println(name);
-        // } }
-
+        return auxiliar;
     }
+
+    ArrayList<Intervalo> muchos_rangos_muchos_intervalos(ArrayList<Intervalo> rangos, ArrayList<Intervalo> intervalos) {
+
+        // llamar a mi_funcion
+        for (int i = 0; i < rangos.size(); i++) {
+            un_rango_muchos_intervalos(rangos.get(i), intervalos);
+        }
+        return rangos;
+    }
+
+    /*
+     * ***********************************************
+     * entrada: entero / Fecha
+     * salida: entero / Fecha
+     * ***********************************************
+     * 
+     * Funciones que operan sobre objetos de la clase Fecha.
+     * Transforman de dias a fecha y viseversa.
+     * 
+     */
+
+    int fecha_a_dias(Fecha fecha) {
+        int mes = fecha.getMes();
+        int dia = fecha.getDia();
+
+        int dias = 0;
+        int meses[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        for (int i = 0; i < mes - 1; i++) {
+            dias = dias + meses[i];
+        }
+        dias = dias + dia;
+        return dias;
+    }
+
+    Fecha dias_a_fecha(int dias) {
+        int meses[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        int conteo = 0;
+        int dias_aux = 0;
+        for (int i = 0; i < meses.length; i++) {
+            dias = dias - meses[i];
+            if (0 < dias) {
+                dias_aux = dias;
+                conteo = conteo + 1;
+            }
+        }
+        return new Fecha(conteo, dias_aux);
+    }
+
 }

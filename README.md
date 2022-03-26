@@ -8,6 +8,12 @@ para IPTP: web scrapper
 |-- data_java-2.xml (XML de la empresa)
 |-- payroll (backend - spring bot)
     |-- pom.xml (dependencias del proyecto)
+    |-- src
+        |-- java
+            |-- payroll
+                |-- Fecha.java (clase propia para la logica)
+                |-- Logica.java (clase propia para la logica)
+                |-- Intervalo.java (clase propia para la logica)
 ```
 # java
 top programming language 2022 [link](https://statisticsanddata.org/data/the-most-popular-programming-languages-1965-2022-new-update/#:~:text=As%20of%201%20January%202022,from%20third%20position%20to%20first.)
@@ -31,9 +37,15 @@ cd (ubicacion)/java/payroll
 ```
 
 # lexico
-- rago = 
-- intervalo = 
-# casos
+- rango: es el espacio de tiempo donde SI hay alguien trabajando.
+- intervalo: es el espacio de tiempo donde NO hay nadie trabajando.
+- espacio de tiempo: se define como unn objeto de la clase Intervalo
+
+PD: aqui habra una confucion por los terminos. Corregir de la siguiente manera:
+- rango -> inter_si_trab
+- intervalo -> inter_no_trab
+- Intervalo -> Intervalo
+# logica de intervalos y rangos
 Al inicio se tendra un solo intervalo. Al ingresar los rangos de horarios se iran dividiendo, acortando o eliminando segun sea el caso:
 ```bash
 i = punto inferior del rango
@@ -85,3 +97,26 @@ i      s
 | caso 4 | no | no | i < a && b < s | se elimina (uno menor y otro mayor)
 | caso 5 | no | no | b < i | no se toca (ambos mayores)
 | caso 6 | no | no | s < a | no se toca (ambos menores)
+
+
+# logica de fecha
+minutos por hora, dia y mes:
+- 1 hora = 60 minutos
+- 1 dia = 24 horas = 24 x 60 minutos
+- 1 mes = y dias = y x 24 x 60 minutos
+
+dias de los meses del 2015:
+- 31 enero
+- 28 febrero
+- 31 marzo
+- 30 abril
+- 31 mayo
+- 30 junio
+- 31 julio
+- 31 agosto
+- 30 septiembre
+- 31 octubre
+- 30 noviembre
+- 31 diciembre
+-------
+total: 365 dias
