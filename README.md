@@ -29,3 +29,59 @@ top programming language 2022 [link](https://statisticsanddata.org/data/the-most
 cd (ubicacion)/java/payroll
 ./mvnw spring-boot:run
 ```
+
+# lexico
+- rago = 
+- intervalo = 
+# casos
+Al inicio se tendra un solo intervalo. Al ingresar los rangos de horarios se iran dividiendo, acortando o eliminando segun sea el caso:
+```bash
+i = punto inferior del rango
+s = punto superior del rango
+a = punto inferior del intervalo
+b = punto superior del intervalo
+caso 1
+               i      s
+               |======|                    rango de hora ingresado
+        a                      b
+        *----------------------*           intervalo
+        *------*      *--------*           resultado
+caso 2
+    i      s
+    |======|                               rango de hora ingresado
+        a                      b
+        *----------------------*           intervalo
+           *-------------------*           resultado
+caso 3
+                            i      s
+                            |======|       rango de hora ingresado
+        a                      b
+        *----------------------*           intervalo
+        *-------------------*              resultado
+caso 4
+    i                              s
+    |==============================|       rango de hora ingresado
+        a                      b
+        *----------------------*           intervalo
+                                           resultado
+caso 5
+                                 i      s
+                                 |======|  rango de hora ingresado
+        a                      b
+        *----------------------*           intervalo
+        *----------------------*           resultado
+caso 6
+i      s
+|======|                                   rango de hora ingresado
+        a                      b
+        *----------------------*           intervalo
+        *----------------------*           resultado
+```
+| | i dentro de intervalo | s dentro de intervalo | ni i ni s dentro de intervalo | intervalo
+| - | - | - | - | - |
+| caso 1 | si | si | x | se divide
+| caso 2 | no | si | x | se acorta (por la izquierda)
+| caso 3 | si | no | x | se acorta (por la derecha)
+| caso 4 | no | no | i < a && b < s | se elimina (uno menor y otro mayor)
+| caso 5 | no | no | b < i | no se toca (ambos mayores)
+| caso 6 | no | no | s < a | no se toca (ambos menores)
