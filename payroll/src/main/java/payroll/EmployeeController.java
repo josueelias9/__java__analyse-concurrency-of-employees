@@ -19,42 +19,40 @@ class EmployeeController {
     this.repository = repository;
   }
 
-
-  // Aggregate root
-  // tag::get-aggregate-root[]
-  @GetMapping("/employees")
-  List<Employee> all() {
-    return repository.findAll();
+  @GetMapping("/calcular")
+  String calcular_get() {
+    return "hola amiguito";
   }
-  // end::get-aggregate-root[]
 
-  @PostMapping("/employees")
-  Employee newEmployee(@RequestBody Employee newEmployee) {
-    return repository.save(newEmployee);
+  @PostMapping("/calcular")
+  List<Intervalo> calcular_post(@RequestBody String xml) {
+    Facade facade = new Facade();
+
+    return facade.espacios_vacios(xml);
   }
 
   // Single item
-  
+
   @GetMapping("/employees/{id}")
   Employee one(@PathVariable Long id) {
-    
+
     return repository.findById(id)
-      .orElseThrow(() -> new EmployeeNotFoundException(id));
+        .orElseThrow(() -> new EmployeeNotFoundException(id));
   }
 
   @PutMapping("/employees/{id}")
   Employee replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
-    
+
     return repository.findById(id)
-      .map(employee -> {
-        employee.setName(newEmployee.getName());
-        employee.setRole(newEmployee.getRole());
-        return repository.save(employee);
-      })
-      .orElseGet(() -> {
-        newEmployee.setId(id);
-        return repository.save(newEmployee);
-      });
+        .map(employee -> {
+          employee.setName(newEmployee.getName());
+          employee.setRole(newEmployee.getRole());
+          return repository.save(employee);
+        })
+        .orElseGet(() -> {
+          newEmployee.setId(id);
+          return repository.save(newEmployee);
+        });
   }
 
   @DeleteMapping("/employees/{id}")
