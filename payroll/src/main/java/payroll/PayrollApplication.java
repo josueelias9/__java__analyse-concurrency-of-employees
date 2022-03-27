@@ -10,7 +10,11 @@ public class PayrollApplication {
   public static void main(String... args) {
 
     MiTest hola = new MiTest();
-    System.out.println(hola.test_muchos_rangos_un_intervalo());
+    Facade facade = new Facade();
+    
+
+    //facade.espacios_vacios();
+    System.out.println(hola.test_horas_a_fecha());
     
     SpringApplication.run(PayrollApplication.class, args);
   }

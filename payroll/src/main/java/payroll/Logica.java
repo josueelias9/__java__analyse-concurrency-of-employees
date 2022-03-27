@@ -17,8 +17,8 @@ public class Logica {
 
     /*
      * ***********************************************
-     * entrada: String / entero
-     * salida: String
+     * entrada: String
+     * salida: JSONObject
      * ***********************************************
      * 
      * Metodos para tranformar XML a JSON para un mejor tratamiento.
@@ -31,10 +31,54 @@ public class Logica {
         return json;
     }
 
-    public String xml_a_arraylist(String xml) {
-        JSONObject json = xml_a_json(xml);
-        JSONObject a = (JSONObject) json.get("response");
-        JSONArray miarreglo = a.getJSONArray("bar");
+    /*
+     * ***********************************************
+     * entrada: entero / Fecha / String
+     * salida: entero / Fecha
+     * ***********************************************
+     * 
+     * Funciones que operan sobre objetos de la clase Fecha.
+     * Transforman de dias a fecha y viseversa.
+     * 
+     */
+
+    int fecha_a_horas(Fecha fecha) {
+        int mes = fecha.getMes();
+        int dia = fecha.getDia();
+        int hora = fecha.getHora();
+
+        int dias = 0;
+        int horas = 0;
+        int meses[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        for (int i = 0; i < mes - 1; i++) {
+            dias = dias + meses[i];
+        }
+        // se resta uno porque cuando digo 3 de enero, en realidad han pasado solo 2
+        // dias completos, no 3
+        dias = dias + dia - 1;
+        horas = dias * 24 + hora;
+
+        return horas;
+    }
+
+    Fecha horas_a_fecha(int horas) {
+
+        int hora = horas % 24;
+        int dias = horas / 24;
+        int meses[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        int conteo = 0;
+        int dias_aux = 0;
+        for (int i = 0; i < meses.length; i++) {
+            dias = dias - meses[i];
+            if (0 < dias) {
+                dias_aux = dias;
+                conteo = conteo + 1;
+            }
+        }
+        return new Fecha(conteo + 1, dias_aux + 1, hora);
+    }
+
+    public Fecha string_a_fecha(String olo1) {
         int ano = 0;
         int mes = 0;
         int dia = 0;
@@ -42,38 +86,27 @@ public class Logica {
         int minuto = 0;
         int segundo = 0;
 
-        JSONObject aux;
-        for (int i = 0; i < miarreglo.length(); i++) {
-            aux = miarreglo.getJSONObject(i);
+        String[] arrOfStr1 = olo1.split("-");
 
-            String olo1 = (String) aux.get("startdate");
-            String[] arrOfStr1 = olo1.split("-");
-            ano = Integer.parseInt((String) Array.get(arrOfStr1, 0));
-            mes = Integer.parseInt((String) Array.get(arrOfStr1, 1));
+        ano = Integer.parseInt((String) Array.get(arrOfStr1, 0));
+        mes = Integer.parseInt((String) Array.get(arrOfStr1, 1));
 
-            String olo2 = (String) (String) Array.get(arrOfStr1, 2);
-            String[] arrOfStr2 = olo2.split(" ");
-            dia = Integer.parseInt((String) Array.get(arrOfStr2, 0));
+        String olo2 = (String) (String) Array.get(arrOfStr1, 2);
+        String[] arrOfStr2 = olo2.split(" ");
+        dia = Integer.parseInt((String) Array.get(arrOfStr2, 0));
 
-            String olo3 = (String) (String) Array.get(arrOfStr2, 1);
-            String[] arrOfStr3 = olo3.split(":");
-            hora = Integer.parseInt((String) Array.get(arrOfStr3, 0));
-            minuto = Integer.parseInt((String) Array.get(arrOfStr3, 1));
-            segundo = Integer.parseInt((String) Array.get(arrOfStr3, 2));
+        String olo3 = (String) (String) Array.get(arrOfStr2, 1);
+        String[] arrOfStr3 = olo3.split(":");
+        hora = Integer.parseInt((String) Array.get(arrOfStr3, 0));
+        minuto = Integer.parseInt((String) Array.get(arrOfStr3, 1));
+        segundo = Integer.parseInt((String) Array.get(arrOfStr3, 2));
 
-            // System.out.println((String)Array.get(arrOfStr, 2));
-            // System.out.println((String)Array.get(arrOfStr3, 2));
-            System.out.println(ano + " " + mes + " " + dia + " " + hora + " " + minuto + " " + segundo);
-
-            // System.out.println(aux.get("startdate") + " " + aux.get("enddate"));
-        }
-
-        return "jsonString";
+        return new Fecha(mes, dia, hora);
     }
 
     /*
      * ***********************************************
-     * entrada: Intervalo / ArrayList<Intervalo>
+     * entrada: Intervalo / ArrayList<Intervalo> / JSONObject
      * salida: ArrayList<Intervalo>
      * ***********************************************
      * 
@@ -81,6 +114,20 @@ public class Logica {
      * Es la logica principal del proyecto.
      * 
      */
+
+    public ArrayList<Intervalo> json_a_arraylist(JSONObject json) {
+        ArrayList<Intervalo> rangos = new ArrayList<>();
+        JSONObject a = (JSONObject) json.get("response");
+        JSONArray miarreglo = a.getJSONArray("bar");
+        JSONObject aux;
+        for (int i = 0; i < miarreglo.length(); i++) {
+            aux = miarreglo.getJSONObject(i);
+            Fecha start_fecha = string_a_fecha((String) aux.get("startdate"));
+            Fecha end_fecha = string_a_fecha((String) aux.get("enddate"));
+            rangos.add(new Intervalo(fecha_a_horas(start_fecha), fecha_a_horas(end_fecha)));
+        }
+        return rangos;
+    }
 
     public ArrayList<Intervalo> un_rango_un_intervalo(Intervalo rango, Intervalo intervalo) {
 
@@ -157,53 +204,6 @@ public class Logica {
             intervalos = this.un_rango_muchos_intervalos(rangos.get(i), intervalos);
         }
         return intervalos;
-    }
-
-    /*
-     * ***********************************************
-     * entrada: entero / Fecha
-     * salida: entero / Fecha
-     * ***********************************************
-     * 
-     * Funciones que operan sobre objetos de la clase Fecha.
-     * Transforman de dias a fecha y viseversa.
-     * 
-     */
-
-    int fecha_a_horas(Fecha fecha) {
-        int mes = fecha.getMes();
-        int dia = fecha.getDia();
-        int hora = fecha.getHora();
-
-        int dias = 0;
-        int horas = 0;
-        int meses[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-        for (int i = 0; i < mes - 1; i++) {
-            dias = dias + meses[i];
-        }
-        // se resta uno porque cuando digo 3 de enero, en realidad han pasado solo 2
-        // dias completos, no 3
-        dias = dias + dia - 1;
-        horas = dias * 24 + hora;
-
-        return horas;
-    }
-
-    Fecha horas_a_fecha(int horas) {
-
-        int hora = horas % 24;
-        int dias = horas / 24;
-        int meses[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-        int conteo = 0;
-        int dias_aux = 0;
-        for (int i = 0; i < meses.length; i++) {
-            dias = dias - meses[i];
-            if (0 < dias) {
-                dias_aux = dias;
-                conteo = conteo + 1;
-            }
-        }
-        return new Fecha(conteo + 1, dias_aux + 1, hora);
     }
 
 }

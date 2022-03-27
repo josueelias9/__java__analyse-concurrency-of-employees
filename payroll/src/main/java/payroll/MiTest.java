@@ -18,19 +18,70 @@ public class MiTest {
         return true;
     }
 
-    boolean test_xml_a_arraylist(){
+    boolean test_json_a_arraylist() {
         String xml = "<response>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-20 17:00:00' group='2' id='72780' isdbar='false' name='LoLa' startdate='2015-01-20 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-23 17:00:00' group='2' id='72783' isdbar='false' name='LoLa' startdate='2015-01-23 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-22 17:00:00' group='2' id='72782' isdbar='false' name='LoLa' startdate='2015-01-22 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-27 17:00:00' group='2' id='72785' isdbar='false' name='LoLa' startdate='2015-01-27 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-26 17:00:00' group='2' id='72784' isdbar='false' name='LoLa' startdate='2015-01-26 08:00:00' type='0' useroffset='2' usertype='0'/></response>  ";
         Logica logi = new Logica();
-        logi.xml_a_arraylist(xml);
+        ArrayList<Intervalo> rangos = logi.json_a_arraylist(logi.xml_a_json(xml));
+
+        /*
+         * para el primer elemento de json:
+         * 
+         * enddate = '2015-01-20 17:00:00'
+         * startdate = '2015-01-20 08:00:00'
+         * 
+         * startdate:
+         * - meses = 0
+         * - dias = 19 dias
+         * - horas = 19*24 + 8 = 464
+         * 
+         * enddate:
+         * - meses = 0
+         * - dias = 19
+         * - horas = 19*24 + 17 = 473
+         * 
+         */
+
+        if (rangos.get(0).getInfe() != 464)
+            return false;
+        if (rangos.get(0).getSupe() != 473)
+            return false;
         return true;
     }
 
     boolean test_horas_a_fecha() {
+/*
+        31 enero 
+        28 febrero
+        31 marzo
+        30 abril
+        31 mayo
+        30 junio
+        31 julio
+        31 agosto
+        30 septiembre
+        31 octubre
+        30 noviembre
+        31 diciembre
+*/
         Logica logi = new Logica();
-        Fecha fecha = logi.horas_a_fecha(968);
+        Fecha fecha = new Fecha(0, 0, 0);
+        // test 1: 968 horas han pasado hasta el 10 de febrero con 8 horas
+        fecha = logi.horas_a_fecha(968);
         if (fecha.getMes() != 2)
             return false;
         if (fecha.getDia() != 10)
+            return false;
+        if (fecha.getHora() != 8)
+            return false;
+        // test 2: 464 horas han pasado hasta el 20 de enero con 8 horas (fallo!!)
+        fecha = logi.horas_a_fecha(464);
+        System.out.println(fecha.getMes());
+        System.out.println(fecha.getDia());
+        System.out.println(fecha.getHora());
+
+        if (fecha.getMes() != 1)
+            return false;
+        if (fecha.getDia() != 20)
             return false;
         if (fecha.getHora() != 8)
             return false;
