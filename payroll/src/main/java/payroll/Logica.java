@@ -1,6 +1,7 @@
 package payroll;
 
 import org.json.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,17 +24,50 @@ public class Logica {
      * Iteran sobre objeto JSONObject para extraer informacion de la fecha.
      * 
      */
-    public String retorna_todo(String hi) {
-        JSONObject json = XML.toJSONObject(hi);
-        String hola = json.toString(4);
-        return hola;
+    public JSONObject xml_a_json(String mi_xml) {
+        JSONObject json = XML.toJSONObject(mi_xml);
+        return json;
     }
 
-    public String retorna_json(String xml) {
-        JSONObject json = XML.toJSONObject(xml);
+    public String xml_a_arraylist(String xml) {
+        JSONObject json = xml_a_json(xml);
         JSONObject a = (JSONObject) json.get("response");
-        String jsonString = a.toString(4);
-        return jsonString;
+        JSONArray miarreglo = a.getJSONArray("bar");
+        int ano =0;
+        int mes = 0;
+        int dia = 0;
+        int hora = 0;
+        int minuto = 0;
+        int segundo = 0;
+
+        JSONObject aux;
+        for (int i = 0; i < miarreglo.length(); i++) {
+            aux = miarreglo.getJSONObject(i);
+            
+            String olo1 = (String) aux.get("startdate");
+            String[] arrOfStr1 = olo1.split("-");
+            ano = Integer.parseInt((String)Array.get(arrOfStr1, 0));
+            mes = Integer.parseInt((String)Array.get(arrOfStr1, 1));
+            
+            String olo2 = (String) (String)Array.get(arrOfStr1, 2);
+            String[] arrOfStr2 = olo2.split(" ");
+            dia = Integer.parseInt((String)Array.get(arrOfStr2, 0));
+            
+            String olo3 = (String) (String)Array.get(arrOfStr2, 1);
+            String[] arrOfStr3 = olo3.split(":");
+            hora = Integer.parseInt((String)Array.get(arrOfStr3, 0));
+            minuto = Integer.parseInt((String)Array.get(arrOfStr3, 1));
+            segundo = Integer.parseInt((String)Array.get(arrOfStr3, 2));
+            
+            //System.out.println((String)Array.get(arrOfStr, 2));
+            //System.out.println((String)Array.get(arrOfStr3, 2));
+            System.out.println(ano + " " + mes + " " + dia + " " + hora + " " + minuto + " " + segundo);
+
+            new Fecha(mes,dia);
+            //System.out.println(aux.get("startdate") + " " + aux.get("enddate"));
+        }
+
+        return "jsonString";
     }
 
     public String retorna_lista(String xml, int num) {
