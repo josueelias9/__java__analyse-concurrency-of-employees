@@ -65,6 +65,7 @@ public class MiTest {
 */
         Logica logi = new Logica();
         Fecha fecha = new Fecha(0, 0, 0);
+        
         // test 1: 968 horas han pasado hasta el 10 de febrero con 8 horas
         fecha = logi.horas_a_fecha(968);
         if (fecha.getMes() != 2)
@@ -73,11 +74,9 @@ public class MiTest {
             return false;
         if (fecha.getHora() != 8)
             return false;
-        // test 2: 464 horas han pasado hasta el 20 de enero con 8 horas (fallo!!)
+
+        // test 2: 464 horas han pasado hasta el 20 de enero con 8 horas
         fecha = logi.horas_a_fecha(464);
-        System.out.println(fecha.getMes());
-        System.out.println(fecha.getDia());
-        System.out.println(fecha.getHora());
 
         if (fecha.getMes() != 1)
             return false;
@@ -85,6 +84,16 @@ public class MiTest {
             return false;
         if (fecha.getHora() != 8)
             return false;
+
+        // test 3: 100 horas han pasado hasta el 5 de enero con 4 horas
+        fecha = logi.horas_a_fecha(100);
+        if (fecha.getMes() != 1)
+            return false;
+        if (fecha.getDia() != 5)
+            return false;
+        if (fecha.getHora() != 4)
+            return false;
+
         return true;
     }
 

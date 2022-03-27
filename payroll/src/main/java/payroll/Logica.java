@@ -66,16 +66,16 @@ public class Logica {
         int hora = horas % 24;
         int dias = horas / 24;
         int meses[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-        int conteo = 0;
-        int dias_aux = 0;
+        int mes = 0;
+        int dia = dias;
         for (int i = 0; i < meses.length; i++) {
             dias = dias - meses[i];
             if (0 < dias) {
-                dias_aux = dias;
-                conteo = conteo + 1;
+                dia = dias;
+                mes = mes + 1;
             }
         }
-        return new Fecha(conteo + 1, dias_aux + 1, hora);
+        return new Fecha(mes + 1, dia + 1, hora);
     }
 
     public Fecha string_a_fecha(String olo1) {

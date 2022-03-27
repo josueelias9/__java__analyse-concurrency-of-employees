@@ -15,12 +15,12 @@ public class Facade {
 
         
         for(int i = 0 ; i < test.size(); i++){
-            System.out.println(test.get(i).getInfe()+" "+ test.get(i).getSupe());  
+            //System.out.println(test.get(i).getInfe()+" "+ test.get(i).getSupe());  
             
             Fecha uno1 =logi.horas_a_fecha(test.get(i).getInfe());
             Fecha uno2 =logi.horas_a_fecha(test.get(i).getSupe());
 
-            //System.out.println(uno1.getMes()+" "+uno1.getDia()+" "+uno1.getHora()+" --- "+uno2.getMes()+" "+uno2.getDia()+" "+uno2.getHora());
+            System.out.println(uno1.getMes()+" "+uno1.getDia()+" "+uno1.getHora()+" --- "+uno2.getMes()+" "+uno2.getDia()+" "+uno2.getHora());
         }
 
 
