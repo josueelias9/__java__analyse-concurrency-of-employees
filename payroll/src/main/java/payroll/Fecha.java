@@ -3,11 +3,12 @@ package payroll;
 public class Fecha {
     int dia;
     int mes;
+    int hora;
 
-    public Fecha(int dia, int mes) {
-        this.dia=dia;
-        this.mes=mes;
-
+    public Fecha(int mes, int dia, int hora) {
+        this.dia = dia;
+        this.mes = mes;
+        this.hora = hora;
     }
 
     public void setDia(int dia) {
@@ -26,4 +27,11 @@ public class Fecha {
         return mes;
     }
 
+    public void setHora(int hora) {
+        this.hora = hora;
+    }
+
+    public int getHora() {
+        return hora;
+    }
 }

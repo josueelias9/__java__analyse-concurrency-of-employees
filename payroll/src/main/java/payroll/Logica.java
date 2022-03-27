@@ -143,20 +143,28 @@ public class Logica {
      * 
      */
 
-    int fecha_a_dias(Fecha fecha) {
+    int fecha_a_horas(Fecha fecha) {
         int mes = fecha.getMes();
         int dia = fecha.getDia();
+        int hora = fecha.getHora();
 
         int dias = 0;
+        int horas = 0;
         int meses[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
         for (int i = 0; i < mes - 1; i++) {
             dias = dias + meses[i];
         }
-        dias = dias + dia;
-        return dias;
+        // se resta uno porque cuando digo 3 de enero, en realidad han pasado solo 2 dias completos, no 3
+        dias = dias + dia - 1;       
+        horas = dias*24 + hora;
+
+        return horas;
     }
 
-    Fecha dias_a_fecha(int dias) {
+    Fecha horas_a_fecha(int horas) {
+
+        int hora = horas%24;
+        int dias = horas/24;
         int meses[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
         int conteo = 0;
         int dias_aux = 0;
@@ -167,7 +175,7 @@ public class Logica {
                 conteo = conteo + 1;
             }
         }
-        return new Fecha(conteo, dias_aux);
+        return new Fecha(conteo+1, dias_aux+1,hora);
     }
 
 }

@@ -5,6 +5,43 @@ import java.util.ArrayList;
 
 public class MiTest {
 
+    boolean test_horas_a_fecha() {
+        Logica logi = new Logica();
+        Fecha fecha = logi.horas_a_fecha(968);
+        if (fecha.getMes() != 2)
+            return false;
+        if (fecha.getDia() != 10)
+            return false;
+        if (fecha.getHora() != 8)
+            return false;
+        return true;
+    }
+
+    boolean test_fecha_a_horas(){
+        Logica logi = new Logica();
+        /*
+        Hasta el 10 de febrero, a las 8 horas, ¿cuantas horas han transcurrido?
+        - meses transcurridos: solo uno, enero. TOTAL = 1 meses
+        - dias trancurridos: enero tiene 31 dias. Si estamos 10/02 entonces ya pasaron 9 dias completos de febrero. TOTAL = 31 + 9 dias
+        - horas transcurridas: hay que multiplicar los dias transcurridos por 24. Al resultado hay que sumarle las 8 horas que ya pasaron. TOTAL = (31 + 9) x 24 + 8 horas. 
+        */
+        if (!(logi.fecha_a_horas(new Fecha(2,10,8)) == 968)){
+            return false;
+        }
+        
+        /*
+        Hasta el 30 de septiembre, a las 23 horas, ¿cuantas horas han transcurrido?
+        - meses transcurridos: 8 meses completos hasta agosto. MESES TOTALES = 8 meses
+        - dias trancurridos: septiembre tiene 30 dias. Si estamos 30/09 entonces ya pasaron 29 dias completos de septiembre. Tener en cuenta que cada mes tiene distintos dias. DIAS TOTALES =  (31 + 28 + 31 + 30 + 31 + 30 + 31 + 31) + 29 dias
+        - horas transcurridas: hay que multiplicar los dias transcurridos por 24. Al resultado hay que sumarle las 23 horas que ya pasaron. TOTAL = (DIAS TOTALES) x 24 + 23 horas. 
+        */
+        if (!(logi.fecha_a_horas(new Fecha(9,30,23)) == 6551)){
+            return false;
+        }
+//
+        return true;
+    }
+
     boolean test_un_rango_un_intervalo() {
         ArrayList<Intervalo> intervalos = new ArrayList<>();
         Logica logi = new Logica();
