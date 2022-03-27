@@ -13,7 +13,7 @@ public class PayrollApplication {
     Facade facade = new Facade();
     
 
-    facade.espacios_vacios();
+    //facade.espacios_vacios();
     //System.out.println(hola.test_horas_a_fecha());
     
     SpringApplication.run(PayrollApplication.class, args);
