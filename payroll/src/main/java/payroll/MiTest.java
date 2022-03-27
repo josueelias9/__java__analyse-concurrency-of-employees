@@ -93,8 +93,25 @@ public class MiTest {
             return false;
         if (fecha.getHora() != 4)
             return false;
-
-        return true;
+        // test 3: testaando fecha en multiplo de 24
+        fecha = logi.horas_a_fecha(24*31);
+        if (fecha.getMes() != 2)
+            return false;
+        if (fecha.getDia() != 1)
+            return false;
+        if (fecha.getHora() != 0)
+            return false;
+        // test 3: testaando fecha en multiplo de 24
+        fecha = logi.horas_a_fecha(24);
+        System.out.println(fecha.getMes());
+        System.out.println(fecha.getDia());
+        System.out.println(fecha.getHora());
+        System.out.println();
+        fecha = logi.horas_a_fecha((31+28+31+30)*24);
+        System.out.println(fecha.getMes());
+        System.out.println(fecha.getDia());
+        System.out.println(fecha.getHora());
+    return true;
     }
 
     boolean test_fecha_a_horas(){

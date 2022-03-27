@@ -70,7 +70,7 @@ public class Logica {
         int dia = dias;
         for (int i = 0; i < meses.length; i++) {
             dias = dias - meses[i];
-            if (0 < dias) {
+            if (0 <= dias) {
                 dia = dias;
                 mes = mes + 1;
             }
