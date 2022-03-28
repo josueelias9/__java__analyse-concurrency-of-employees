@@ -49,19 +49,19 @@ public class Logica {
 
 
         int meses[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-        int dias = 0;
-        int horas = 0;
+        int mes_a_dias = 0;
         int minutos = 0;
-        for (int i = 0; i < mes - 1; i++) {
-            dias = dias + meses[i];
-        }
-        // se resta uno porque cuando digo 3 de enero, en realidad han pasado solo 2
-        // dias completos, no 3
-        dias = dias + dia - 1;
-        horas = dias * 24;
-        minutos = minutos * 60;
 
-        return horas;
+        for (int i = 0; i < mes - 1; i++) {
+            mes_a_dias = mes_a_dias + meses[i];
+        }
+        int mes_a_minutos = mes_a_dias * 24 * 60;
+        int dia_a_minutos = (dia - 1) * 24 * 60;
+        int hora_a_minutos = hora * 60;
+
+        minutos = mes_a_minutos + dia_a_minutos + hora_a_minutos + minuto;
+
+        return minutos;
     }
 
     Fecha minutos_a_fecha(int minutos) {

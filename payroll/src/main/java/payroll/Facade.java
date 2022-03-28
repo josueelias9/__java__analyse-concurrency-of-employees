@@ -7,7 +7,7 @@ public class Facade {
     ArrayList<Fecha> espacios_vacios_fechas(String xml) {
         Logica logi = new Logica();
         ArrayList<Intervalo> rangos = logi.json_a_arraylist(logi.xml_a_json(xml));
-        ArrayList<Intervalo> test = logi.muchos_rangos_un_intervalo(rangos, new Intervalo(0, 365 * 24));
+        ArrayList<Intervalo> test = logi.muchos_rangos_un_intervalo(rangos, new Intervalo(0, 365 * 24 * 60));
 
         ArrayList<Fecha> fechas = new ArrayList<>();
 
