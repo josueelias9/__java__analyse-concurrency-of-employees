@@ -8,49 +8,44 @@ public class MiTest {
 
 
     boolean test_espacios_vacios_fechas(){
-
+        Facade faca = new Facade();
+        ArrayList<Fecha> test = new ArrayList<>();
+        String xml = "";
         /**
+         * TEST 1
          * startdate='2015-01-20 08:00:00' enddate='2015-01-20 17:00:00'
          * startdate='2015-01-23 08:00:00' enddate='2015-01-23 17:00:00'
          * startdate='2015-01-22 08:00:00' enddate='2015-01-22 17:00:00'
          * startdate='2015-01-27 08:00:00' enddate='2015-01-27 17:00:00'
          * startdate='2015-01-26 08:00:00' enddate='2015-01-26 17:00:00'
          */
-        String xml = "<response>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-20 17:00:00' group='2' id='72780' isdbar='false' name='LoLa' startdate='2015-01-20 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma'  enddate='2015-01-23 17:00:00' group='2' id='72783' isdbar='false' name='LoLa' startdate='2015-01-23 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma'  enddate='2015-01-22 17:00:00' group='2' id='72782' isdbar='false' name='LoLa' startdate='2015-01-22 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-27 17:00:00' group='2' id='72785' isdbar='false' name='LoLa' startdate='2015-01-27 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma'  enddate='2015-01-26 17:00:00' group='2' id='72784' isdbar='false' name='LoLa' startdate='2015-01-26 08:00:00' type='0' useroffset='2' usertype='0'/></response>  ";
-        Facade faca = new Facade();
-        ArrayList<Fecha> test = faca.espacios_vacios_fechas(xml);
+        xml = "<response>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-20 17:00:00' group='2' id='72780' isdbar='false' name='LoLa' startdate='2015-01-20 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma'  enddate='2015-01-23 17:00:00' group='2' id='72783' isdbar='false' name='LoLa' startdate='2015-01-23 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma'  enddate='2015-01-22 17:00:00' group='2' id='72782' isdbar='false' name='LoLa' startdate='2015-01-22 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-27 17:00:00' group='2' id='72785' isdbar='false' name='LoLa' startdate='2015-01-27 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma'  enddate='2015-01-26 17:00:00' group='2' id='72784' isdbar='false' name='LoLa' startdate='2015-01-26 08:00:00' type='0' useroffset='2' usertype='0'/></response>  ";
+        test = faca.espacios_vacios_fechas(xml);
+
+        //for (int i = 0; i < test.size(); i++) {
+        //    System.out.println(test.get(i).getMes() + " " + test.get(i).getDia() + " " + test.get(i).getHora()+ " " + test.get(i).getMinuto());
+        //}
+        /**
+         * TEST 2
+
+        startdate='2015-01-23 08:00:00'  enddate='2015-01-23 10:30:00'
+        startdate='2015-01-22 10:00:00'  enddate='2015-01-22 19:00:00'
+        startdate='2015-01-22 10:00:00'  enddate='2015-01-22 14:00:00'
+        startdate='2015-01-23 10:00:00'  enddate='2015-01-23 19:00:00'
+        startdate='2015-01-23 10:00:00'  enddate='2015-01-23 14:00:00'
+        startdate='2015-01-21 19:00:00'  enddate='2015-01-21 19:50:00'
+         */
+
+   
+        xml = "<response>  <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-23 10:30:00' group='6' id='73582' isdbar='false' name='Ranee Xia' startdate='2015-01-23 08:00:00' type='1' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='13' dateoffset='8' dcname='Alfa' enddate='2015-01-22 19:00:00' group='0' hasnccduty='true' id='73810' isdbar='false' name='Victor Ma' startdate='2015-01-22 10:00:00' type='0' useroffset='2' usertype='0'/>    <bar comment='' datacenter='13' dateoffset='8' dcname='Alfa' enddate='2015-01-22 14:00:00' group='0' hasnccduty='true' id='73810' isdbar='true' name='Victor Ma' startdate='2015-01-22 10:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='13' dateoffset='8' dcname='Alfa' enddate='2015-01-23 19:00:00' group='0' hasnccduty='true' id='74134' isdbar='false' name='Victor Ma' startdate='2015-01-23 10:00:00' type='0' useroffset='2' usertype='0'/>    <bar comment='' datacenter='13' dateoffset='8' dcname='Alfa' enddate='2015-01-23 14:00:00' group='0' hasnccduty='true' id='74134' isdbar='true' name='Victor Ma' startdate='2015-01-23 10:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='13' dateoffset='8' dcname='Alfa' enddate='2015-01-21 19:50:00' group='0' id='74058' isdbar='false' name='Victor Ma' startdate='2015-01-21 19:00:00' type='0' useroffset='2' usertype='0'/>  </response>";
+        test = faca.espacios_vacios_fechas(xml);
 
         for (int i = 0; i < test.size(); i++) {
-            System.out.println(test.get(i).getMes() + " " + test.get(i).getDia() + " " + test.get(i).getHora());
+            System.out.println(test.get(i).getMes() + " " + test.get(i).getDia() + " " + test.get(i).getHora()+ " " + test.get(i).getMinuto());
         }
         return false;
     }
 
-    boolean test_espacios_vacios_intervalos() {
-        String xml = "<response>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-20 17:00:00' group='2' id='72780' isdbar='false' name='LoLa' startdate='2015-01-20 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma'  enddate='2015-01-23 17:00:00' group='2' id='72783' isdbar='false' name='LoLa' startdate='2015-01-23 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma'  enddate='2015-01-22 17:00:00' group='2' id='72782' isdbar='false' name='LoLa' startdate='2015-01-22 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-27 17:00:00' group='2' id='72785' isdbar='false' name='LoLa' startdate='2015-01-27 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma'  enddate='2015-01-26 17:00:00' group='2' id='72784' isdbar='false' name='LoLa' startdate='2015-01-26 08:00:00' type='0' useroffset='2' usertype='0'/></response>  ";
-        Facade faca = new Facade();
-        ArrayList<Intervalo> test = faca.espacios_vacios_intervalos(xml);
-
-        for (int i = 0; i < test.size(); i++) {
-            System.out.println(test.get(i).getInfe());
-        }
-
-        return false;
-
-        // 0 464
-        // 1 1 0 --- 1 1 8
-        // 473 512
-        // 1 1 17 --- 1 1 8
-        // 521 536
-        // 1 1 17 --- 1 1 8
-        // 545 608
-        // 1 1 17 --- 1 1 8
-        // 617 632
-        // 1 1 17 --- 1 1 8
-        // 641 8760
-        // 1 1 17 --- 12 32 0
-
-    }
 
     boolean test_xml_a_json() {
 
@@ -94,7 +89,7 @@ public class MiTest {
         return true;
     }
 
-    boolean test_horas_a_fecha() {
+    boolean test_minutos_a_fecha() {
 /*
         dias del año 2015
         31 enero 
@@ -111,83 +106,103 @@ public class MiTest {
         31 diciembre
 */
         Logica logi = new Logica();
-        Fecha fecha = new Fecha(0, 0, 0);
+        Fecha fecha = new Fecha(0, 0, 0, 0);
         
-        // test 1: 968 horas han pasado hasta el 10 de febrero con 8 horas
-        fecha = logi.horas_a_fecha(968);
-        if (fecha.getMes() != 2)
-            return false;
-        if (fecha.getDia() != 10)
-            return false;
-        if (fecha.getHora() != 8)
-            return false;
-
-        // test 2: 464 horas han pasado hasta el 20 de enero con 8 horas
-        fecha = logi.horas_a_fecha(464);
-
+        // test 1: 3008 minutos han pasado hasta el 3 de enero con 2:08 minutos
+        fecha = logi.minutos_a_fecha(3008);
         if (fecha.getMes() != 1)
             return false;
-        if (fecha.getDia() != 20)
+        if (fecha.getDia() != 3)
             return false;
-        if (fecha.getHora() != 8)
+        if (fecha.getHora() != 2)
             return false;
-
-        // test 3: 100 horas han pasado hasta el 5 de enero con 4 horas
-        fecha = logi.horas_a_fecha(100);
+        if (fecha.getMinuto() != 8)
+            return false;
+        // test 2: 7200 minutos han pasado hasta el 36de enero con 0:00 minutos
+        fecha = logi.minutos_a_fecha(7200);
         if (fecha.getMes() != 1)
             return false;
-        if (fecha.getDia() != 5)
+        if (fecha.getDia() != 6)
             return false;
-        if (fecha.getHora() != 4)
+        if (fecha.getHora() != 0)
             return false;
-        // test 4: testeando fecha en multiplo de 24
-        fecha = logi.horas_a_fecha(24*31);
-        if (fecha.getMes() != 2)
+        if (fecha.getMinuto() != 0)
+            return false;
+        // test 3: 84960 minutos han pasado hasta el 1 de marzo con 0:00 horas
+        fecha = logi.minutos_a_fecha(84960);
+        if (fecha.getMes() != 3)
             return false;
         if (fecha.getDia() != 1)
             return false;
         if (fecha.getHora() != 0)
             return false;
-        // test 5: testeando fecha en multiplo de 24 y tambien en multiplo de mes
-        fecha = logi.horas_a_fecha(24);
-        if (fecha.getMes() != 1)
+        if (fecha.getMinuto() != 0)
             return false;
-        if (fecha.getDia() != 2)
-            return false;
-        if (fecha.getHora() != 0)
-            return false;
-        fecha = logi.horas_a_fecha((31+28+31+30)*24);
-        if (fecha.getMes() != 5)
-            return false;
-        if (fecha.getDia() != 1)
-            return false;
-        if (fecha.getHora() != 0)
-            return false;
+
     return true;
     }
 
-    boolean test_fecha_a_horas(){
+    boolean test_fecha_a_minutos() {
         Logica logi = new Logica();
         /*
-        Hasta el 10 de febrero, a las 8 horas, ¿cuantas horas han transcurrido?
-        - meses transcurridos: solo uno, enero. TOTAL = 1 meses
-        - dias trancurridos: enero tiene 31 dias. Si estamos 10/02 entonces ya pasaron 9 dias completos de febrero. TOTAL = 31 + 9 dias
-        - horas transcurridas: hay que multiplicar los dias transcurridos por 24. Al resultado hay que sumarle las 8 horas que ya pasaron. TOTAL = (31 + 9) x 24 + 8 horas. 
-        */
-        if (!(logi.fecha_a_horas(new Fecha(2,10,8)) == 968)){
+         * Hasta el 1 de marzo, a las 0:00 horas, ¿cuantos minutos han transcurrido?
+         * - resumen: 2 meses + 0 dias + 0 horas + 0 minutos
+         * 
+         * - meses a minutos = (31 + 28) x 24 x 60 = 84960
+         * - dias a minutos = 0
+         * - horas a minutos = 0
+         * 
+         * - total: 84960 + 0 + 0 + 0 = 84960
+         *  
+         */
+        if (!(logi.fecha_a_minutos(new Fecha(3, 1, 0, 0)) == 84960)) {
             return false;
         }
-        
+
         /*
-        Hasta el 30 de septiembre, a las 23 horas, ¿cuantas horas han transcurrido?
-        - meses transcurridos: 8 meses completos hasta agosto. MESES TOTALES = 8 meses
-        - dias trancurridos: septiembre tiene 30 dias. Si estamos 30/09 entonces ya pasaron 29 dias completos de septiembre. Tener en cuenta que cada mes tiene distintos dias. DIAS TOTALES =  (31 + 28 + 31 + 30 + 31 + 30 + 31 + 31) + 29 dias
-        - horas transcurridas: hay que multiplicar los dias transcurridos por 24. Al resultado hay que sumarle las 23 horas que ya pasaron. TOTAL = (DIAS TOTALES) x 24 + 23 horas. 
-        */
-        if (!(logi.fecha_a_horas(new Fecha(9,30,23)) == 6551)){
+         * Hasta el 6 de enero, a las 0:00 horas, ¿cuantas minutos han transcurrido?
+         * - resumen: 0 meses + 5 dias + 0 horas + 0 minutos
+         * 
+         * - meses a minutos = 0
+         * - dias a minutos = 5 x 24 x 60 = 7200
+         * - horas a minutos = 0
+         * 
+         * - total: 0 + 7200 + 0 + 0 = 7200
+         * 
+         */
+        if (!(logi.fecha_a_minutos(new Fecha(1, 6, 0, 0)) == 7200)) {
             return false;
         }
-//
+
+        /*
+         * Hasta el 10 de febrero, a las 8 horas, ¿cuantas horas han transcurrido?
+         * - resumen: 1 meses + 9 dias + 8 horas + 0 minutos
+         * 
+         * - meses a minutos = (31) x 24 x 60 = 44640
+         * - dias a minutos = 9 x 24 x 60 = 12960
+         * - horas a minutos = 8 x 60 = 480
+         * 
+         * - total: 44640 + 12960 + 480 + 0 = 58080
+         * 
+         */
+        if (!(logi.fecha_a_minutos(new Fecha(2, 10, 8, 0)) == 58080)) {
+            return false;
+        }
+
+        /*
+         * Hasta el 3 de enero, a las 2:08 horas, ¿cuantos minutos han transcurrido?
+         * - resumen: 0 meses + 2 dias + 2 horas + 8 minutos
+         * 
+         * - meses a minutos = 0
+         * - dias a minutos = 2 x 24 x 60 = 2880
+         * - horas a minutos = 2 x 60 = 120
+         * 
+         * - total: 0 + 2880 + 120 + 8 = 3008
+         */
+
+        if (!(logi.fecha_a_minutos(new Fecha(1, 3, 2, 8)) == 3008)) {
+            return false;
+        }
         return true;
     }
 
@@ -248,7 +263,7 @@ public class MiTest {
                       *======*      *====================*             resultado
         0      50     100    150    200    250    300    350    365  
         |------|------|------|------|------|------|------|------|
-        
+                 
         test 5
                *================================================*      rango
                       *======*      *====================*             intervalos  
