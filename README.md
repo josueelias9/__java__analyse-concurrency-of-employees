@@ -1,8 +1,10 @@
 # proyecto
-Determinar con java los intervalos de tiempo donde no hay personal trabajando. El programa debe ser capaz de hacer este calculoo en el rango enero 2015 hasta diciembre 2015.
+Determinar con java los intervalos de tiempo donde no hay personal trabajando. El programa debe ser capaz de hacer este calculo en el rango enero 2015 hasta diciembre 2015.
 # entreble
 
 Despues de ejecutar el programa se llevo a la siguiente conclusion:
+![](demostracion.png)
+
 # datos
 - cliente: IPTP network
 - desarrollador: Josue Huaman
@@ -33,7 +35,7 @@ PD: aqui habra una confucion por los terminos. Corregir de la siguiente manera:
 - rango -> inter_si_trab
 - intervalo -> inter_no_trab
 - Intervalo -> Intervalo
-## logica de intervalos y rangos
+## logica del backend
 Al inicio se tendra un solo intervalo. Al ingresar los rangos de horarios se iran dividiendo, acortando o eliminando segun sea el caso:
 ```bash
 i = punto inferior del rango
