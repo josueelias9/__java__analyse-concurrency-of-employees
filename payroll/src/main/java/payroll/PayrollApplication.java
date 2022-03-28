@@ -13,11 +13,8 @@ public class PayrollApplication {
 
   public static void main(String... args) {
 
-    // MiTest hola = new MiTest();
-    // Facade facade = new Facade();
-
-    // facade.espacios_vacios();
-    // System.out.println(hola.test_horas_a_fecha());
+    // MiTest test = new MiTest();
+    // test.test_espacios_vacios_fechas();
 
     SpringApplication.run(PayrollApplication.class, args);
   }

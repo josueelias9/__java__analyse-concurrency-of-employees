@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src="main.js"></script>
+
+</head>
+
+<body>
+
+    <div>
+        <br><br><br><br>
+        <h1>Horas sin trabajadores</h1>
+    </div>
+    <div>
+        <form id="myForm">
+            <label for="mixml">pon XML</label>
+            <input type="text" id="mixml" name="mixml" value="ingresa...">
+            <button type="submit">ejecutar</button>
+        </form>
+    </div>
+    <div>
+        <p id="prueba"></p>
+    </div>
+    <script>
+        let direccion_url = "http://localhost:8080/calcular";
+        
+        
+        const myForm = document.getElementById("myForm");
+        myForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            postAPI(direccion_url, formData);
+
+        });
+        //getAPI(direccion_url);
+
+
+    </script>
+
+</body>
+
+</html>
