@@ -14,11 +14,8 @@ public class PayrollApplication {
   public static void main(String... args) {
 
     MiTest test = new MiTest();
-    System.out.println(test.test_espacios_vacios_fechas());
-    
-
-
-
+    System.out.println(test.test_operation());
+  
     SpringApplication.run(PayrollApplication.class, args);
   }
 
