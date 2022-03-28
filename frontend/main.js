@@ -58,10 +58,10 @@ async function postAPI(miurl, formData) {
                 a = a + ((i/2)+1);
                 a = a + '</td>';
                 a = a + '<td>';
-                a = a + data[i].dia + " de " + mes(data[i].mes) + " a las " + data[i].hora + " horas";
+                a = a + data[i].dia + " de " + mes(data[i].mes) + " a las " + data[i].hora + " horas con "+ data[i].minuto + " minutos";
                 a = a + '</td>';
                 a = a + '<td>';
-                a = a + data[i+1].dia + " de " + mes(data[i+1].mes) + " a las " + data[i+1].hora + " horas";
+                a = a + data[i+1].dia + " de " + mes(data[i+1].mes) + " a las " + data[i+1].hora + " horas con "+ data[i+1].minuto + " minutos";
                 a = a + '</td>';
 
                 a = a + '</tr>';

@@ -1,4 +1,10 @@
 body {
-    background-image: url("IPTP.png");
+    background-image: url("imagenes/IPTP.png");
     background-repeat: no-repeat;
+  }
+
+
+.cuadro {
+    height: 400px;
+    width: 100%;
   }
