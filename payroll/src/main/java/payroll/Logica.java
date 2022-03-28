@@ -41,27 +41,32 @@ public class Logica {
      * 
      */
 
-    int fecha_a_horas(Fecha fecha) {
+    int fecha_a_minutos(Fecha fecha) {
         int mes = fecha.getMes();
         int dia = fecha.getDia();
         int hora = fecha.getHora();
+        int minuto = fecha.getMinuto();
 
+
+        int meses[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
         int dias = 0;
         int horas = 0;
-        int meses[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        int minutos = 0;
         for (int i = 0; i < mes - 1; i++) {
             dias = dias + meses[i];
         }
         // se resta uno porque cuando digo 3 de enero, en realidad han pasado solo 2
         // dias completos, no 3
         dias = dias + dia - 1;
-        horas = dias * 24 + hora;
+        horas = dias * 24;
+        minutos = minutos * 60;
 
         return horas;
     }
 
-    Fecha horas_a_fecha(int horas) {
-
+    Fecha minutos_a_fecha(int minutos) {
+        int minuto = minutos % 60;
+        int horas = minutos / 60;
         int hora = horas % 24;
         int dias = horas / 24;
         int meses[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -74,7 +79,7 @@ public class Logica {
                 mes = mes + 1;
             }
         }
-        return new Fecha(mes + 1, dia + 1, hora);
+        return new Fecha(mes + 1, dia + 1, hora, minuto);
     }
 
     public Fecha string_a_fecha(String olo1) {
@@ -100,7 +105,7 @@ public class Logica {
         minuto = Integer.parseInt((String) Array.get(arrOfStr3, 1));
         segundo = Integer.parseInt((String) Array.get(arrOfStr3, 2));
 
-        return new Fecha(mes, dia, hora);
+        return new Fecha(mes, dia, hora, minuto);
     }
 
     /*
@@ -123,7 +128,7 @@ public class Logica {
             aux = miarreglo.getJSONObject(i);
             Fecha start_fecha = string_a_fecha((String) aux.get("startdate"));
             Fecha end_fecha = string_a_fecha((String) aux.get("enddate"));
-            rangos.add(new Intervalo(fecha_a_horas(start_fecha), fecha_a_horas(end_fecha)));
+            rangos.add(new Intervalo(fecha_a_minutos(start_fecha), fecha_a_minutos(end_fecha)));
         }
         return rangos;
     }
