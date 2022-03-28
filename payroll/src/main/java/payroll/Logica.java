@@ -4,7 +4,6 @@ import java.lang.reflect.Array;
 
 import org.json.*;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * logica
