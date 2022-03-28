@@ -1,7 +1,9 @@
 package payroll;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "*")
 class EmployeeController {
 
   private final EmployeeRepository repository;
@@ -19,9 +22,12 @@ class EmployeeController {
     this.repository = repository;
   }
 
+  @CrossOrigin(origins = "http://localhost:8080")
   @GetMapping("/calcular")
-  String calcular_get() {
-    return "hola amiguito";
+  ArrayList<Intervalo> calcular_get() {
+    String xml = "<response><bar addedby='' comment='' datacenter='13' dateoffset='8' dcname='Alfa' enddate='2015-01-20 18:00:00' extension=' ' group='1' id='73969' isdbar='false' name='Kameron Diazzz' startdate='2015-01-20 09:00:00' type='0' useroffset='2' usertype='0'/><bar addedby='' comment='' datacenter='13' dateoffset='8' dcname='Alfa' enddate='2015-01-22 18:00:00' extension=' ' group='1' id='74074' isdbar='false' name='Kameron Diazzz' startdate='2015-01-22 09:00:00' type='0' useroffset='2' usertype='0'/></response>";
+    Facade facade = new Facade();
+    return facade.espacios_vacios(xml);
   }
 
   @PostMapping("/calcular")

@@ -7,6 +7,8 @@
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src="main.js"></script>
+
 </head>
 
 <body>
@@ -21,7 +23,12 @@
             <button type="submit">ejecutar</button>
         </form>
     </div>
-    <script src='main.js'></script>
+    <script>
+        let direccion_url = "http://localhost:8080/calcular";
+        getAPI(direccion_url);
+
+
+    </script>
 
 </body>
 

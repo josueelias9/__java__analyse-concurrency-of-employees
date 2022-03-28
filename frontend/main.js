@@ -1,17 +1,24 @@
 
 async function getAPI(url) {
-    let response = await fetch(url);
-    let data_json = await response.json;
+    fetch(url)
+        .then(response => {
+            return response.json();})
+        .then(data => {
+            let a = "";
+            console.log(data.length);
+            for(let i = 0; i< data.length; i++){
+                a = a + "<li>limite inferior: " + data[i].infe +"     limite superior: "+ data[i].supe +"</li>";
+            }
+            document.getElementById("prueba").innerHTML = a;
 
-    return data_json;
+        });
 }
 
 
 
-let direccion_url = "http://localhost:8080/calcular";
-let a = await getAPI(direccion_url);
-
-document.getElementById("prueba").innerHTML = a;
+//let direccion_url = "http://localhost:8080/calcular";
+//let a = await getAPI(direccion_url);
+//
 
 
 // 

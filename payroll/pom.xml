@@ -50,6 +50,13 @@
 			<version>20180130</version>
 		</dependency>
 
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
