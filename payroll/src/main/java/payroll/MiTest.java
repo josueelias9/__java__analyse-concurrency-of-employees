@@ -8,23 +8,6 @@ import javax.swing.text.Style;
 
 public class MiTest {
 
-
-    boolean test_operation(){
-        //String xml = "<response>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-20 17:00:00' group='2' id='72780' isdbar='false' name='LoLa' startdate='2015-01-20 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma'  enddate='2015-01-23 17:00:00' group='2' id='72783' isdbar='false' name='LoLa' startdate='2015-01-23 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma'  enddate='2015-01-22 17:00:00' group='2' id='72782' isdbar='false' name='LoLa' startdate='2015-01-22 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-27 17:00:00' group='2' id='72785' isdbar='false' name='LoLa' startdate='2015-01-27 08:00:00' type='0' useroffset='2' usertype='0'/>    <bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma'  enddate='2015-01-26 17:00:00' group='2' id='72784' isdbar='false' name='LoLa' startdate='2015-01-26 08:00:00' type='0' useroffset='2' usertype='0'/></response>  ";
-        
-        String xml = "<response><bar comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-24 17:00:00' group='8' hasnccduty='true' id='74010' isdbar='true' name='Mikkey Mouse' startdate='2015-01-24 14:00:00' type='1' useroffset='2' usertype='2'/><bar addedby='' comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-25 11:00:00' group='8' hasnccduty='true' id='74216' isdbar='false' name='Mikkey Mouse' startdate='2015-01-25 09:00:00' type='1' useroffset='2' usertype='2'/><bar comment='' datacenter='15' dateoffset='1' dcname='Gamma' enddate='2015-01-25 11:00:00' group='8' hasnccduty='true' id='74216' isdbar='true' name='Mikkey Mouse' startdate='2015-01-25 09:00:00' type='1' useroffset='2' usertype='2'/><line dateoffset='0' groups='1' times='2015-03-03 01:42:04' userid='126'/></response>";
-
-        
-        JSONObject mi_json = XML.toJSONObject(xml);
-        //ProxyJSONObject mi_proxy_json = new ProxyJSONObject(mi_json);
-        
-        
-        //JSONObject hh = mi_proxy_json.operation();
-        System.out.println(mi_json.toString(4));
-
-        return false;   
-    }
-
     boolean test_espacios_vacios_fechas(){
         Facade faca = new Facade();
         ArrayList<Fecha> test = new ArrayList<>();

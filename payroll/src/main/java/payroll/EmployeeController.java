@@ -24,6 +24,7 @@ class EmployeeController {
   @CrossOrigin(origins = "http://localhost:8080")
   @PostMapping("/calcular")
   ArrayList<Fecha> calcular_post(@RequestBody String xml) {
+    System.out.println(xml);
 
     JSONObject jsonObject = new JSONObject(xml);
     String hola = (String) jsonObject.get("mixml");

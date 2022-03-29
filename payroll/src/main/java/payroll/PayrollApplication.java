@@ -11,11 +11,7 @@ import java.util.ArrayList;
 @SpringBootApplication
 public class PayrollApplication {
 
-  public static void main(String... args) {
-
-    MiTest test = new MiTest();
-    System.out.println(test.test_operation());
-  
+  public static void main(String... args) {  
     SpringApplication.run(PayrollApplication.class, args);
   }
 
