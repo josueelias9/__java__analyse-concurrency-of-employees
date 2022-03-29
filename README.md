@@ -1,14 +1,22 @@
-# proyecto
-Determinar con java los intervalos de tiempo donde no hay personal trabajando. El programa debe ser capaz de hacer este calculo en el rango enero 2015 hasta diciembre 2015.
-# entreble
+# Proyecto
+Hacer un programa usando el lenguaje __Java__ que determine los intervalos de tiempo (__mes, dia hora y minutos__) donde no hay personal trabajando en la empresa IPTP. El programa debe ser capaz de hacer este calculo en el rango enero 2015 hasta diciembre 2015.
+# Entregable
 
-Despues de ejecutar el programa se llevo a la siguiente conclusion:
+Despues de ejecutar el programa y consideranco que el algoritmo hace la evaluacion en el todo el año 2015, se llevo a la siguiente conclusion:
+
 ![](demostracion.png)
 
-# datos
-- cliente: IPTP network
-- desarrollador: Josue Huaman
-# arquitectura del proyecto
+No hay personal trabajando desde:
+```
+- el primero de enero a las 0:00 horas hasta el 19 de enero al medio dia en punto.
+- el 20 de enero a las 4:00 horas hasta el 20 de enero a las 6:00 horas.
+- el 27 de enero a las 23:59 horas hasta el 1 de enero a las 0:00 del 2016.
+```
+
+# Datos
+- **cliente**: IPTP network
+- **desarrollador**: Josue Huaman
+# Arquitectura del proyecto
 
 ```
                 +--------+                  +--------+       
@@ -18,23 +26,18 @@ xml file -->    |frontend|  API (json) -->  |backend |
                 +--------+                  +--------+      
                   fetch                  spring controller 
 ```
-- frontend: 
-  - lenguge: Javascrit
-  - framework: bootstrap
 - backend: 
   - framwork: Sring
   - lenguaje de programacion: java
   - patrones de diseño: facade y proxy
+- frontend: 
+  - lenguge: Javascrit
+  - framework: bootstrap
 
-## lexico
-- rango: es el espacio de tiempo donde SI hay alguien trabajando.
-- intervalo: es el espacio de tiempo donde NO hay nadie trabajando.
-- espacio de tiempo: se define como unn objeto de la clase Intervalo
-
-PD: aqui habra una confucion por los terminos. Corregir de la siguiente manera:
-- rango -> inter_si_trab
-- intervalo -> inter_no_trab
-- Intervalo -> Intervalo
+## palabras claves...
+- __rango__: es el espacio de tiempo donde SI hay alguien trabajando.
+- __intervalo__: es el espacio de tiempo donde NO hay nadie trabajando.
+- __espacio de tiempo__: se define como unn objeto de la clase Intervalo
 ## logica del backend
 Al inicio se tendra un solo intervalo. Al ingresar los rangos de horarios se iran dividiendo, acortando o eliminando segun sea el caso:
 ```bash
@@ -110,7 +113,8 @@ dias de los meses del 2015:
 - 31 diciembre
 -------
 total: 365 dias
-# estructura
+# Estructura del repositorio
+Dentro de la carpeta _/main/java/payroll_ se encuentra las clases de java que hacen la logica del ejercicio.
 ```
 |-- frontend (frontend :D)
 |-- README.md (documentacion)
@@ -128,12 +132,17 @@ total: 365 dias
                     |-- MiTest.java (clase propia para la logica)
 ```
 
-# deploy 
-- descargar repo git hub y ejecutar los siguientes comandos
+# Deploy
+descargar repo git hub y ejecutar los siguientes comandos
 ```bash
-cd (ubicacion)/java/payroll
+cd (ubicacion del repositorio)/java/payroll
 ./mvnw spring-boot:run
 ```
+Con esto se instalaran las dependencias del backend y se levantara el puerto 8080 para que el frontend pueda consumir de el. Luego ir a la carpeta: 
+```bash
+cd (ubicacion del repositorio)/java/frontend
+```
+dar doble click al archivo _post.html_ y se abrira la pagina con el aplicativo desarrollado.
 
 # links
 ## java
