@@ -14,8 +14,20 @@ No hay personal trabajando desde:
 ```
 
 # Datos
-- **cliente**: IPTP network
-- **desarrollador**: Josue Huaman
+generales:
+- __cliente__: IPTP network
+- __desarrollador__: Josué Huamán
+- __fecha inicio__: 25 de marzo a las 11:48 minutos
+- __fecha fin__: 28 de marzo a las 23:59 minutos
+- __lenguage solicitado__: Java
+
+tecnico:
+- __entorno__: linux
+- __lenguaje__: java
+- __framework__: spring y bootstrap
+- __herramientas__: 
+![](git.png)
+
 # Arquitectura del proyecto
 
 ```
@@ -118,7 +130,7 @@ Dentro de la carpeta _/main/java/payroll_ se encuentra las clases de java que ha
 ```
 |-- frontend (frontend :D)
 |-- README.md (documentacion)
-|-- data_java-2.xml (XML de la empresa)
+|-- input (carpeta con el XML de la empresa)
 |-- payroll (backend - spring bot)
     |-- pom.xml (dependencias del proyecto)
     |-- src
