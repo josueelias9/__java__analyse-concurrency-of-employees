@@ -2,7 +2,7 @@
 Hacer un programa usando el lenguaje __Java__ que determine los intervalos de tiempo (__mes, dia hora y minutos__) donde no hay personal trabajando en la empresa IPTP. El programa debe ser capaz de hacer este calculo en el rango enero 2015 hasta diciembre 2015.
 # Entregable
 
-Despues de ejecutar el programa y consideranco que el algoritmo hace la evaluacion en el todo el año 2015, se llevo a la siguiente conclusion:
+Despues de ejecutar el programa y considerando que el algoritmo hace la evaluacion en el todo el año 2015, se llevo a la siguiente conclusion:
 
 ![](demostracion.png)
 
@@ -21,8 +21,8 @@ generales:
 - __fecha fin__: 28 de marzo a las 23:59 minutos
 - __lenguage solicitado__: Java
 
-tecnico:
-- __entorno__: linux
+tecnicos:
+- __sistema operativo__: Ubuntu Linux
 - __lenguaje__: java
 - __framework__: spring y bootstrap
 - __herramientas__: Visual studio code, thunder client, spring initalizer, crhome developer tool, git, etc.
@@ -40,12 +40,12 @@ xml file -->    |frontend|  API (json) -->  |backend |
                   fetch                  spring controller 
 ```
 - backend: 
-  - framwork: Sring
-  - lenguaje de programacion: java
-  - patrones de diseño: facade y proxy
+  - __lenguaje de programacion__: Java
+  - __framwork__: Spring-boot (JPA, Web app)
+  - __patrones de diseño__: Facade y Adapter (GoF)
 - frontend: 
-  - lenguge: Javascrit
-  - framework: bootstrap
+  - __lenguge__: Javascript
+  - __framework__: Bootstrap (framwork de CSS)
 
 ## palabras claves...
 - __rango__: es el espacio de tiempo donde SI hay alguien trabajando.
@@ -106,7 +106,6 @@ i      s
 
 
 ## logica de fecha
-
 El dato que recibimos son minutos. Estos tenemos que convertirlos a fecha. Para ello consideramos que los dias varian segun el mes:
 
 dias de los meses del 2015:
@@ -125,7 +124,7 @@ dias de los meses del 2015:
 
 Con esto claro, queda calcular a partir de los minutos cuandos meses, dias y horas han pasado.
 # Estructura del repositorio
-Dentro de la carpeta _/main/java/payroll_ se encuentra las clases de java que hacen la logica del ejercicio.
+Dentro de la carpeta _/main/java/payroll_ se encuentra las clases de Java que hacen la logica del ejercicio.
 ```
 |-- frontend (frontend :D)
 |-- README.md (documentacion)
@@ -142,9 +141,8 @@ Dentro de la carpeta _/main/java/payroll_ se encuentra las clases de java que ha
                     |-- Facade.java (clase propia para la logica)
                     |-- MiTest.java (clase propia para la logica)
 ```
-
 # Deploy
-descargar repo git hub y ejecutar los siguientes comandos
+descargar este repositorio y ejecutar los siguientes comandos (Ubuntu):
 ```bash
 cd (ubicacion del repositorio)/java/payroll
 ./mvnw spring-boot:run
@@ -153,8 +151,7 @@ Con esto se instalaran las dependencias del backend y se levantara el puerto 808
 ```bash
 cd (ubicacion del repositorio)/java/frontend
 ```
-dar doble click al archivo _post.html_ y se abrira la pagina con el aplicativo desarrollado.
-
+dar doble click al archivo _post.html_ y se abrira la pagina con el aplicativo desarrollado. Dar click donde dice _Seleccionar archivo_. Ir a la carpeta _input_ y seleccionar el archivo _data_java-2.xml_. Este fue el archivo que nos dio la empresa. En la parte inferior se verán los rangos donde no hay personal trabajando.
 # links
 ## java
 top programming language 2022 [link](https://statisticsanddata.org/data/the-most-popular-programming-languages-1965-2022-new-update/#:~:text=As%20of%201%20January%202022,from%20third%20position%20to%20first.)
