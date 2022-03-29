@@ -39,11 +39,12 @@ async function getAPI(url) {
 }
 
 
-async function postAPI(miurl, formData) {
-    const value = Object.fromEntries(formData.entries());
+
+async function postAPI(miurl, texto) {
+
     let xx = {
         method: 'post',
-        body: JSON.stringify(value)
+        body: JSON.stringify({ "mixml": texto })
     }
     fetch(miurl, xx)
         .then(response => {
@@ -55,21 +56,19 @@ async function postAPI(miurl, formData) {
             for (let i = 0; i < data.length; i++) {
                 a = a + '<tr>';
                 a = a + '<td>';
-                a = a + ((i/2)+1);
+                a = a + ((i / 2) + 1);
                 a = a + '</td>';
                 a = a + '<td>';
-                a = a + data[i].dia + " de " + mes(data[i].mes) + " a las " + data[i].hora + " horas con "+ data[i].minuto + " minutos";
+                a = a + data[i].dia + " de " + mes(data[i].mes) + " a las " + data[i].hora + " horas con " + data[i].minuto + " minutos";
                 a = a + '</td>';
                 a = a + '<td>';
-                a = a + data[i+1].dia + " de " + mes(data[i+1].mes) + " a las " + data[i+1].hora + " horas con "+ data[i+1].minuto + " minutos";
+                a = a + data[i + 1].dia + " de " + mes(data[i + 1].mes) + " a las " + data[i + 1].hora + " horas con " + data[i + 1].minuto + " minutos";
                 a = a + '</td>';
 
                 a = a + '</tr>';
                 i = i + 1;
             }
             document.getElementById("oe").innerHTML = a;
-            //document.getElementById("oe").innerHTML = '<th scope="row">3</th> <td colspan="2">Larry the Bird</td>    <td>@twitter</td>';
-
         });
 
 }

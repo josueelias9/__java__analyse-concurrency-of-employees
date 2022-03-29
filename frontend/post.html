@@ -45,14 +45,12 @@
     <div class="m-4">
 
         <h2>Horas sin trabajadores</h2>
-        <p>Se evalua los horarios donde no se cuenta con ningun personal en la empresa. </p>
+        <p>Se evalua los horarios donde no se cuenta con ningun personal en la empresa. Se considera todo el año 2015.</p>
     </div>
 
     <div class="m-4">
         <form id="myForm">
-            <label for="mixml">pegar XML:</label>
-            <input class="cuadro" type="text" id="mixml" name="mixml" value="copia y pega el archivo XML">
-            <button type="submit">ejecutar</button>
+            <input type="file" id="fileInput">
         </form>
     </div>
     <div class="m-4">
@@ -73,23 +71,28 @@
 
     <nav class="navbar fixed-bottom navbar-light bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand text-white" href="https://github.com/josueelias9/java">Desarrollador: Josué Huamán. Click aquí para ir al repositorio del proyecto.</a>
+            <a class="navbar-brand text-white" href="https://github.com/josueelias9/java">Desarrollador: Josué Huamán.
+                Click aquí para ir al repositorio del proyecto.</a>
         </div>
     </nav>
+    
     <script>
         let direccion_url = "http://localhost:8080/calcular";
 
+        document.getElementById('fileInput').addEventListener('change', function selectedFileChanged() {
+            if (this.files.length === 0) {
+                console.log('No file selected.');
+                return;
+            }
 
-        const myForm = document.getElementById("myForm");
-        myForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            postAPI(direccion_url, formData);
-
+            const reader = new FileReader();
+            reader.onload = function fileReadCompleted() {
+                // when the reader is done, the content is in reader.result.
+                postAPI(direccion_url, reader.result);
+                //console.log(reader.result);
+            };
+            reader.readAsText(this.files[0]);
         });
-        //getAPI(direccion_url);
-
-
     </script>
 
     <!-- Optional JavaScript; choose one of the two! -->
