@@ -25,7 +25,8 @@ tecnico:
 - __entorno__: linux
 - __lenguaje__: java
 - __framework__: spring y bootstrap
-- __herramientas__: 
+- __herramientas__: Visual studio code, thunder client, spring initalizer, crhome developer tool, git, etc.
+
 ![](git.png)
 
 # Arquitectura del proyecto
@@ -104,11 +105,9 @@ i      s
 | caso 6 | no | no | s < a | no se toca (ambos menores)
 
 
-# logica de fecha
-minutos por hora, dia y mes:
-- 1 hora = 60 minutos
-- 1 dia = 24 horas = 24 x 60 minutos
-- 1 mes = y dias = y x 24 x 60 minutos
+## logica de fecha
+
+El dato que recibimos son minutos. Estos tenemos que convertirlos a fecha. Para ello consideramos que los dias varian segun el mes:
 
 dias de los meses del 2015:
 - 31 enero
@@ -123,8 +122,8 @@ dias de los meses del 2015:
 - 31 octubre
 - 30 noviembre
 - 31 diciembre
--------
-total: 365 dias
+
+Con esto claro, queda calcular a partir de los minutos cuandos meses, dias y horas han pasado.
 # Estructura del repositorio
 Dentro de la carpeta _/main/java/payroll_ se encuentra las clases de java que hacen la logica del ejercicio.
 ```
