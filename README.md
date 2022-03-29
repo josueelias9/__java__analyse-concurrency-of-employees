@@ -118,11 +118,14 @@ total: 365 dias
 |-- payroll (backend - spring bot)
     |-- pom.xml (dependencias del proyecto)
     |-- src
-        |-- java
-            |-- payroll
-                |-- Fecha.java (clase propia para la logica)
-                |-- Logica.java (clase propia para la logica)
-                |-- Intervalo.java (clase propia para la logica)
+        |-- main
+            |-- java
+                |-- payroll
+                    |-- Fecha.java (clase propia para la logica)
+                    |-- Logica.java (clase propia para la logica)
+                    |-- Intervalo.java (clase propia para la logica)
+                    |-- Facade.java (clase propia para la logica)
+                    |-- MiTest.java (clase propia para la logica)
 ```
 
 # deploy 
